@@ -13,8 +13,7 @@ const listaInscritosEl = document.getElementById("lista-inscritos");
 const inscritos = [];
 
 function calcularValorInscricao(isEstudante) {
-  // BUG #2: Em vez de aplicar 20% de desconto (VALOR_BASE * (1 - DESCONTO_ESTUDANTE)),
-  // o código está somando 20% no valor base.
+
   if (isEstudante) {
     return VALOR_BASE * (1 + DESCONTO_ESTUDANTE);
   }
@@ -39,8 +38,7 @@ function atualizarInterface() {
     listaInscritosEl.appendChild(li);
   });
 
-  // BUG #3: O total arrecadado não é recalculado/atualizado na tela
-  // quando novos inscritos entram (fica preso em R$ 0,00).
+
 }
 
 form.addEventListener("submit", (event) => {
@@ -50,8 +48,6 @@ form.addEventListener("submit", (event) => {
   const idade = Number(idadeInput.value);
   const estudante = estudanteInput.checked;
 
-  // BUG #1: Falta validar idade mínima de 16 anos (e idade inválida <= 0).
-  // Aceita qualquer número digitado no campo de idade.
   if (!nome) {
     mensagemEl.textContent = "Informe o nome do participante.";
     mensagemEl.className = "mensagem erro";
